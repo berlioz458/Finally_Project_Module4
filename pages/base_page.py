@@ -1,6 +1,7 @@
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import NoAlertPresentException
+from telnetlib import EC
 import math
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BasePage(object):
@@ -18,6 +19,25 @@ class BasePage(object):
             self.browser.find_element(how, what)
         except NoSuchElementException:
             return False
+        return True
+
+    #  is_not_element_present: упадет, как только увидит искомый элемент. Не появился: успех, тест зеленый.
+    def is_not_element_present(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return True
+
+        return False
+
+    #  is_disappeared: будет ждать до тех пор, пока элемент не исчезнет.
+    def is_disappeared(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout, 1, TimeoutException). \
+                until_not(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+
         return True
 
     def solve_quiz_and_get_code(self):

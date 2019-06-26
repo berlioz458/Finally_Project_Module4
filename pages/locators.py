@@ -21,3 +21,4 @@ class ProductPageLocators(object):
     PRICE = (By.CSS_SELECTOR, "#messages .alert-info strong")
     REAL_NAME_ITEM = (By.CSS_SELECTOR, ".product_main h1")
     REAL_PRICE = (By.CSS_SELECTOR, ".product_main .price_color")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert-success")
