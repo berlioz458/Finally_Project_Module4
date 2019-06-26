@@ -1,0 +1,2 @@
+[0626/171458.340:ERROR:process_reader_win.cc(123)] NtOpenThread: {Отказ доступа} Процесс запросил доступ к объекту, однако права доступа не предоставлены. (0xc0000022)
+[0626/171458.352:ERROR:exception_snapshot_win.cc(98)] thread ID 7824 not found in process
