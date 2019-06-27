@@ -20,7 +20,9 @@ class ProductPage(BasePage):
         assert price.text == real_price.text, "Wrong price"
 
     def should_not_be_success_message(self):
-        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is presented"
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
 
-    def should_not_be_success_message2(self):
-        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE, 4), "Error"
+    def should_is_disappeared_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is disappeared, but should not be"

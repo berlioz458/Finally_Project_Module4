@@ -1,3 +1,4 @@
+from .pages.login_page import LoginPage
 from .pages.product_page import ProductPage
 import pytest
 
@@ -22,14 +23,7 @@ def test_guest_can_add_product_to_cart(browser, links):
     page.should_be_message_about_price()  # проверели цену товара
 
 
-def test_guest_cant_see_success_message_after_adding_product_to_cart(browser):
-    link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
-    page = ProductPage(browser, link)
-    page.open()
-    page.add_cart_to_pocket()
-    page.should_not_be_success_message()
-
-
+@pytest.mark.skip
 def test_guest_cant_see_success_message(browser):
     link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
     page = ProductPage(browser, link)
@@ -37,9 +31,18 @@ def test_guest_cant_see_success_message(browser):
     page.should_not_be_success_message()
 
 
-def test_message_dissapeared_after_adding_product_to_cart(browser):
+def test_guest_should_see_login_link_on_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
     page = ProductPage(browser, link)
     page.open()
-    page.add_cart_to_pocket()
-    page.should_not_be_success_message2()
+    page.should_be_login_link()
+
+
+def test_guest_can_go_to_login_page_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.go_to_login_page()
+    login_page = LoginPage(browser, browser.current_url)
+    login_page.should_be_login_page()
+
