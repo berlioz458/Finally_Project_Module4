@@ -1,4 +1,4 @@
-py==1.8.0
+py==1.10.0
 pycparser==2.19
 pytest==3.10.1
 pytest-rerunfailures==3.1
